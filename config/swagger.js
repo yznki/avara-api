@@ -18,7 +18,6 @@ const swaggerOptions = {
       title: "Avara API",
       version: "1.0.0",
     },
-    servers: [{url: "http://localhost:1234"}],
     components: {
       securitySchemes: {
         Auth0: {
@@ -38,7 +37,7 @@ const swaggerOptions = {
         },
       },
     },
-    security: [{Auth0: ["read:users"]}],
+    security: [{Auth0: []}],
   },
   apis: [path.resolve("routes/*.js"), path.resolve("controllers/*.js")],
 }
