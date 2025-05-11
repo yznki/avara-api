@@ -2,7 +2,9 @@ import {User} from "../models/User.js"
 import {Account} from "../models/Account.js"
 
 export const createOrGetUser = async (req, res) => {
-  const {sub, email, fullName} = req.auth.payload
+  const {sub, email, fullName, name} = req.auth.payload
+  const fallbackEmail = email || `${sub}@no-email.auth0`
+  const finalName = fullName || name || "Anonymous"
 
   try {
     let user = await User.findOne({auth0Id: sub})
@@ -11,7 +13,7 @@ export const createOrGetUser = async (req, res) => {
       user = await User.findOne({email})
 
       if (!user) {
-        user = await User.create({auth0Id: sub, email, name: fullName})
+        user = await User.create({auth0Id: sub, email: fallbackEmail, name: finalName})
 
         await Account.create({
           userId: user._id,
