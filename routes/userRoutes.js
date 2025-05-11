@@ -2,6 +2,8 @@ import express from "express"
 import {createOrGetUser, updateUser, getAllUsers} from "../controllers/userController.js"
 import {requireAuth} from "../middleware/requireAuth.js"
 import {checkJwt} from "../middleware/checkJwt.js"
+import {upload} from "../utils/cloudinary.js"
+import {uploadProfilePicture} from "../controllers/userController.js"
 
 const router = express.Router()
 
@@ -82,5 +84,44 @@ router.get("/all", requireAuth, getAllUsers)
  *         description: Server error
  */
 router.patch("/me", requireAuth, updateUser)
+
+/**
+ * @swagger
+ * /api/user/me/upload-profile-picture:
+ *   post:
+ *     summary: Upload or update the user's profile picture
+ *     tags: [User]
+ *     security:
+ *       - Auth0: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               profilePicture:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Profile picture uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Profile picture updated
+ *                 profilePicture:
+ *                   type: string
+ *                   example: https://res.cloudinary.com/demo/image/upload/v123456789/profile.jpg
+ *       400:
+ *         description: No file uploaded
+ *       500:
+ *         description: Upload failed
+ */
+router.post("/me/upload-profile-picture", requireAuth, upload.single("profilePicture"), uploadProfilePicture)
 
 export default router
