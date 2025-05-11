@@ -120,7 +120,7 @@ router.post("/internal-transfer", internalTransfer)
  * @swagger
  * /api/transactions/external-transfer:
  *   post:
- *     summary: Transfer money to another user's checking account by email
+ *     summary: Transfer money to another user's checking account by user ID
  *     tags: [Transactions]
  *     security:
  *       - Auth0: []
@@ -130,16 +130,20 @@ router.post("/internal-transfer", internalTransfer)
  *         application/json:
  *           schema:
  *             type: object
- *             required: [fromId, toEmail, amount]
+ *             required: [fromId, toUserId, amount]
  *             properties:
  *               fromId:
  *                 type: string
- *               toEmail:
+ *                 description: ID of the sender's account
+ *               toUserId:
  *                 type: string
+ *                 description: ID of the recipient user
  *               amount:
  *                 type: number
+ *                 description: Amount to transfer
  *               note:
  *                 type: string
+ *                 description: Optional note for the transaction
  *     responses:
  *       201:
  *         description: External transfer successful

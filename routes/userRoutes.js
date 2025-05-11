@@ -1,5 +1,5 @@
 import express from "express"
-import {createOrGetUser, updateUser} from "../controllers/userController.js"
+import {createOrGetUser, updateUser, getAllUsers} from "../controllers/userController.js"
 import {requireAuth} from "../middleware/requireAuth.js"
 import {checkJwt} from "../middleware/checkJwt.js"
 
@@ -22,6 +22,24 @@ const router = express.Router()
  *         description: Server error
  */
 router.get("/me", checkJwt, createOrGetUser)
+
+/**
+ * @swagger
+ * /api/user/all:
+ *   get:
+ *     summary: Get all users
+ *     tags: [User]
+ *     security:
+ *       - Auth0: []
+ *     responses:
+ *       200:
+ *         description: List of users
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Server error
+ */
+router.get("/all", requireAuth, getAllUsers)
 
 /**
  * @swagger

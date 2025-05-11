@@ -113,9 +113,9 @@ export const internalTransfer = async (req, res) => {
 
 export const externalTransfer = async (req, res) => {
   const user = req.user
-  const {fromId, toEmail, amount, note} = req.body
+  const {fromId, toUserId, amount, note} = req.body
 
-  if (!fromId || !toEmail || !amount || amount <= 0) {
+  if (!fromId || !toUserId || !amount || amount <= 0) {
     return res.status(400).json({error: "Missing or invalid fields"})
   }
 
@@ -125,7 +125,7 @@ export const externalTransfer = async (req, res) => {
       return res.status(403).json({error: "Unauthorized or source account not found"})
     }
 
-    const recipient = await User.findOne({email: toEmail})
+    const recipient = await User.findById(toUserId)
     if (!recipient) {
       return res.status(404).json({error: "Recipient user not found"})
     }

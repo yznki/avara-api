@@ -56,3 +56,13 @@ export const updateUser = async (req, res) => {
     res.status(500).json({error: "Failed to update user"})
   }
 }
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, "_id name email profilePicture")
+    res.json(users)
+  } catch (err) {
+    console.error("Error fetching users:", err)
+    res.status(500).json({error: "Failed to fetch users"})
+  }
+}
