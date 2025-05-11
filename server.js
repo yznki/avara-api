@@ -6,11 +6,14 @@ dotenv.config()
 import {connectDB} from "./config/db.js"
 import userRoutes from "./routes/userRoutes.js"
 import accountRoutes from "./routes/accountRoutes.js"
+import adminRoutes from "./routes/adminRoutes.js"
+
 import transactionRoutes from "./routes/transactionRoutes.js"
 import swaggerUi from "swagger-ui-express"
 import swaggerSpec from "./config/swagger.js"
 import {requireAuth} from "./middleware/requireAuth.js"
 import compression from "compression"
+import {requireAdmin} from "./middleware/requireAdmin.js"
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -50,6 +53,8 @@ app.use("/docs/oauth2-redirect.html", express.static("node_modules/swagger-ui-di
 app.use("/api/user", userRoutes)
 app.use("/api/accounts", requireAuth, accountRoutes)
 app.use("/api/transactions", requireAuth, transactionRoutes)
+
+app.use("/api/admin", requireAdmin, adminRoutes)
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`)
