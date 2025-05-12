@@ -5,8 +5,6 @@ import {generateInitialsAvatar} from "../utils/avatarGenerator.js"
 import {uploadToCloudinary} from "../utils/uploadToCloudinary.js"
 
 export const createOrGetUser = async (req, res) => {
-  console.log(req.auth.payload)
-
   const {sub, email, fullName, name} = req.auth.payload
   const fallbackEmail = email || `${sub}@no-email.auth0`
   const finalName = fullName || name || "Anonymous"

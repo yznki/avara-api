@@ -1,7 +1,6 @@
 import {User} from "../models/User.js"
 
 export const authUserFromJwt = async (req, res, next) => {
-  console.log(req)
   const payload = req.auth?.payload
   const {sub} = payload || {}
 
