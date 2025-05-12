@@ -14,7 +14,7 @@ router.use(requireAuth)
 
 /**
  * @swagger
- * /api/transactions/deposit:
+ * /transactions/deposit:
  *   post:
  *     summary: Deposit money into a user's account
  *     tags: [Transactions]
@@ -48,7 +48,7 @@ router.post("/deposit", deposit)
 
 /**
  * @swagger
- * /api/transactions/withdraw:
+ * /transactions/withdraw:
  *   post:
  *     summary: Withdraw money from a user's account
  *     tags: [Transactions]
@@ -82,7 +82,7 @@ router.post("/withdraw", withdraw)
 
 /**
  * @swagger
- * /api/transactions/internal-transfer:
+ * /transactions/internal-transfer:
  *   post:
  *     summary: Transfer money between the user's own accounts
  *     tags: [Transactions]
@@ -118,7 +118,7 @@ router.post("/internal-transfer", internalTransfer)
 
 /**
  * @swagger
- * /api/transactions/external-transfer:
+ * /transactions/external-transfer:
  *   post:
  *     summary: Transfer money to another user's checking account by user ID
  *     tags: [Transactions]
@@ -160,7 +160,7 @@ router.post("/external-transfer", externalTransfer)
 
 /**
  * @swagger
- * /api/transactions:
+ * /transactions:
  *   get:
  *     summary: Get all transactions related to the user's accounts
  *     tags: [Transactions]
@@ -176,7 +176,7 @@ router.get("/", getUserTransactions)
 
 /**
  * @swagger
- * /api/transactions/{id}:
+ * /transactions/{id}:
  *   get:
  *     summary: Get a transaction by ID
  *     tags: [Transactions]

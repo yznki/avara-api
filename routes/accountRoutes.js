@@ -7,7 +7,7 @@ router.use(requireAuth)
 
 /**
  * @swagger
- * /api/accounts:
+ * /accounts:
  *   post:
  *     summary: Create a new account
  *     tags: [Accounts]
@@ -37,7 +37,7 @@ router.post("/", createAccount)
 
 /**
  * @swagger
- * /api/accounts:
+ * /accounts:
  *   get:
  *     summary: Get all user accounts
  *     tags: [Accounts]
@@ -53,7 +53,7 @@ router.get("/", getUserAccounts)
 
 /**
  * @swagger
- * /api/accounts/{id}:
+ * /accounts/{id}:
  *   get:
  *     summary: Get account by ID
  *     tags: [Accounts]
@@ -78,7 +78,7 @@ router.get("/:id", getAccountById)
 
 /**
  * @swagger
- * /api/accounts/{id}:
+ * /accounts/{id}:
  *   delete:
  *     summary: Delete an account
  *     tags: [Accounts]

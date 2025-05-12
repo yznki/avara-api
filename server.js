@@ -50,11 +50,11 @@ app.use(
 app.use("/docs/oauth2-redirect.html", express.static("node_modules/swagger-ui-dist/oauth2-redirect.html"))
 
 // Routes
-app.use("/api/user", userRoutes)
-app.use("/api/accounts", requireAuth, accountRoutes)
-app.use("/api/transactions", requireAuth, transactionRoutes)
+app.use("/user", userRoutes)
+app.use("/accounts", requireAuth, accountRoutes)
+app.use("/transactions", requireAuth, transactionRoutes)
 
-app.use("/api/admin", requireAdmin, adminRoutes)
+app.use("/admin", requireAdmin, adminRoutes)
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`)

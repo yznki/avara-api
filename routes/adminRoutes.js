@@ -7,7 +7,7 @@ router.use(requireAdmin)
 
 /**
  * @swagger
- * /api/admin/transactions:
+ * /admin/transactions:
  *   get:
  *     summary: Get all transactions
  *     tags: [Admin]
@@ -23,7 +23,7 @@ router.get("/transactions", getAllTransactions)
 
 /**
  * @swagger
- * /api/admin/manual-deposit:
+ * /admin/manual-deposit:
  *   post:
  *     summary: Perform a manual deposit into a user account
  *     tags: [Admin]
@@ -57,7 +57,7 @@ router.post("/manual-deposit", manualDeposit)
 
 /**
  * @swagger
- * /api/admin/audit-logs:
+ * /admin/audit-logs:
  *   get:
  *     summary: View all admin audit logs
  *     tags: [Admin]
@@ -73,7 +73,7 @@ router.get("/audit-logs", getAdminAuditLogs)
 
 /**
  * @swagger
- * /api/admin/users/{id}:
+ * /admin/users/{id}:
  *   delete:
  *     summary: Delete a user and their accounts
  *     tags: [Admin]

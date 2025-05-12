@@ -9,7 +9,7 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/user/me:
+ * /user/me:
  *   get:
  *     summary: Get the authenticated user, or create one if they don't exist.
  *     tags: [User]
@@ -27,7 +27,7 @@ router.get("/me", checkJwt, createOrGetUser)
 
 /**
  * @swagger
- * /api/user/all:
+ * /user/all:
  *   get:
  *     summary: Get all users
  *     tags: [User]
@@ -45,7 +45,7 @@ router.get("/all", requireAuth, getAllUsers)
 
 /**
  * @swagger
- * /api/user/me:
+ * /user/me:
  *   patch:
  *     summary: Update the authenticated user's profile
  *     tags: [User]
@@ -87,7 +87,7 @@ router.patch("/me", requireAuth, updateUser)
 
 /**
  * @swagger
- * /api/user/me/upload-profile-picture:
+ * /user/me/upload-profile-picture:
  *   post:
  *     summary: Upload or update the user's profile picture
  *     tags: [User]
