@@ -69,7 +69,7 @@ export const updateUser = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}, "_id name email profilePicture")
+    const users = await User.find()
     res.json(users)
   } catch (err) {
     console.error("Error fetching users:", err)

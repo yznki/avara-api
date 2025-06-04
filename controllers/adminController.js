@@ -1,6 +1,7 @@
 import {AdminAuditLog} from "../models/AdminAuditLog.js"
 import {User} from "../models/User.js"
 import {Transaction} from "../models/Transaction.js"
+import {Account} from "../models/Account.js"
 
 export const getAdminAuditLogs = async (req, res) => {
   try {
@@ -78,5 +79,15 @@ export const deleteUser = async (req, res) => {
   } catch (err) {
     console.error("Delete user error:", err)
     res.status(500).json({error: "Failed to delete user"})
+  }
+}
+
+export const getAllAccounts = async (req, res) => {
+  try {
+    const accounts = await Account.find()
+    res.json(accounts)
+  } catch (err) {
+    console.error("Error fetching all accounts:", err)
+    res.status(500).json({error: "Failed to fetch accounts"})
   }
 }

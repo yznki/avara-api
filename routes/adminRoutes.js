@@ -1,6 +1,12 @@
 import express from "express"
 import {requireAdmin} from "../middleware/requireAdmin.js"
-import {getAllTransactions, manualDeposit, getAdminAuditLogs, deleteUser} from "../controllers/adminController.js"
+import {
+  getAllTransactions,
+  manualDeposit,
+  getAdminAuditLogs,
+  deleteUser,
+  getAllAccounts,
+} from "../controllers/adminController.js"
 
 const router = express.Router()
 router.use(requireAdmin)
@@ -20,6 +26,22 @@ router.use(requireAdmin)
  *         description: Failed to fetch transactions
  */
 router.get("/transactions", getAllTransactions)
+
+/**
+ * @swagger
+ * /admin/accounts:
+ *   get:
+ *     summary: Get all accounts
+ *     tags: [Admin]
+ *     security:
+ *       - Auth0: []
+ *     responses:
+ *       200:
+ *         description: List of all accounts
+ *       500:
+ *         description: Failed to fetch accounts
+ */
+router.get("/accounts", getAllAccounts)
 
 /**
  * @swagger
